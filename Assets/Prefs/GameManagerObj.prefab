@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &456827238810725525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456827238810725524}
+  - component: {fileID: 456827238810725527}
+  - component: {fileID: 456827238810725526}
+  m_Layer: 0
+  m_Name: GameManagerObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &456827238810725524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456827238810725525}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.2774153, y: -2.4558687, z: -22.153973}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &456827238810725527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456827238810725525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbda36ba13e183f45b5610808d322f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spikeObj: {fileID: 7549800536109513632, guid: 85bcee67f4845534797799eb0833b333, type: 3}
+  coinObj: {fileID: 5978354219757108469, guid: 85af4bd6fc121d14abccae86d96e7b9a, type: 3}
+  playerObj: {fileID: 0}
+  minSpikes: 10
+  maxSpikes: 20
+  minCoins: 2
+  maxCoins: 8
+--- !u!114 &456827238810725526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456827238810725525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74783cc0930ead4cbd329eb051dfe96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

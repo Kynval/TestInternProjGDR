@@ -1,0 +1,4 @@
+#Tue Oct 11 18:38:01 MSK 2022
+base.0=D\:\\Programs\\UnityProjects\\Test Project P 2D\\Temp\\gradleOut\\launcher\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
