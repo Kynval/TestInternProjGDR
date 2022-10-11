@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
             {
                 Ray ray = Camera.main.ScreenPointToRay(new Vector2(input.position.x, input.position.y));
 
-                if (!EventSystem.current.IsPointerOverGameObject())
+                if (!EventSystem.current.IsPointerOverGameObject() && !IsPointerOverUIObject())
                 {
                     Vector2 touchPosition = new Vector2(ray.origin.x, ray.origin.y);
 
@@ -85,6 +85,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
 
     void OnTriggerEnter2D(Collider2D collider)
     {

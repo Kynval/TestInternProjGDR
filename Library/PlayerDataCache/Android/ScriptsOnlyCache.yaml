@@ -79,9 +79,9 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1548}
+      Script: {instanceID: 1546}
     - Class: 114
-      Script: {instanceID: 1868}
+      Script: {instanceID: 1866}
     - Class: 114
       Script: {instanceID: 2722}
     - Class: 114
@@ -160,11 +160,13 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1548}
+      Script: {instanceID: 1546}
     - Class: 114
-      Script: {instanceID: 1868}
+      Script: {instanceID: 1866}
     - Class: 114
-      Script: {instanceID: 2278}
+      Script: {instanceID: 2276}
+    - Class: 114
+      Script: {instanceID: 2470}
     - Class: 114
       Script: {instanceID: 2722}
     - Class: 114
@@ -184,11 +186,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4924}
     - Class: 114
-      Script: {instanceID: 5326}
+      Script: {instanceID: 4998}
     - Class: 114
-      Script: {instanceID: 61946}
-    - Class: 114
-      Script: {instanceID: 61952}
+      Script: {instanceID: 5328}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -334,6 +334,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: 7805dbebd103341782f3d6071ec8690f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: _usrDontDestroyOnLoad
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -690,6 +696,12 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
+      Hash: 6c4836c38c32e231d35dec2749ae16dc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Music
+  - hash:
+      serializedVersion: 2
       Hash: 28cfb4bd305dd11c6326cc3ee7c14138
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.Experimental.U2D.Animation
@@ -754,18 +766,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
-  - hash:
-      serializedVersion: 2
-      Hash: 6c4836c38c32e231d35dec2749ae16dc
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Music
-  - hash:
-      serializedVersion: 2
-      Hash: 7805dbebd103341782f3d6071ec8690f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: _usrDontDestroyOnLoad
   platform: 13
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
