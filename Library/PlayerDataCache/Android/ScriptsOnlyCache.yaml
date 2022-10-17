@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - FieldGenerator
     - GameSceneManager
     - Music
     - Player
@@ -10,11 +11,8 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
-    - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -87,17 +85,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2944}
     - Class: 114
-      Script: {instanceID: 3130}
+      Script: {instanceID: 3040}
     - Class: 114
-      Script: {instanceID: 3334}
+      Script: {instanceID: 3132}
     - Class: 114
-      Script: {instanceID: 3382}
+      Script: {instanceID: 3336}
     - Class: 114
-      Script: {instanceID: 3506}
+      Script: {instanceID: 3384}
     - Class: 114
-      Script: {instanceID: 3712}
+      Script: {instanceID: 3508}
     - Class: 114
-      Script: {instanceID: 4870}
+      Script: {instanceID: 3714}
+    - Class: 114
+      Script: {instanceID: 4874}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -172,21 +172,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2944}
     - Class: 114
-      Script: {instanceID: 3130}
+      Script: {instanceID: 3040}
     - Class: 114
-      Script: {instanceID: 3334}
+      Script: {instanceID: 3132}
     - Class: 114
-      Script: {instanceID: 3382}
+      Script: {instanceID: 3336}
     - Class: 114
-      Script: {instanceID: 3506}
+      Script: {instanceID: 3384}
     - Class: 114
-      Script: {instanceID: 4870}
+      Script: {instanceID: 3508}
     - Class: 114
-      Script: {instanceID: 4924}
+      Script: {instanceID: 4874}
     - Class: 114
-      Script: {instanceID: 4998}
+      Script: {instanceID: 4928}
     - Class: 114
-      Script: {instanceID: 5328}
+      Script: {instanceID: 5002}
+    - Class: 114
+      Script: {instanceID: 5332}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -395,6 +397,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameSceneManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestRunner.Utils
     className: TestRunCallbackListener
@@ -439,7 +447,7 @@ ScriptsOnlyBuild:
       Hash: 6174b22574c401d308a22295c52f3e1c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: GameSceneManager
+    className: FieldGenerator
   - hash:
       serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
@@ -496,10 +504,16 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 780dee0d3ab5e611a31bb455f42295db
+      Hash: 6a5fe7dbbad27ff57427dc0826205206
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameWorker
   - hash:
       serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
