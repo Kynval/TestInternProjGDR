@@ -14,11 +14,5 @@ public class _usrDontDestroyOnLoad : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(this.gameObject);
-
-        //FindObjectsOfType(GetType()).Where(_ => _ != this).ToList().ForEach(_ => DontDestroyOnLoad(_));
-
-
-        //if (FindObjectsOfType(GetType()).Length > 1)
-        //    Destroy(item);
     }
 }

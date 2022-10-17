@@ -1,70 +1,66 @@
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(FieldGenerator))]
 public class GameSceneManager : MonoBehaviour
 {
-    [SerializeField] GameObject spikeObj;
-    [SerializeField] GameObject coinObj;
-    [SerializeField] GameObject playerObj;
+    TMPro.TMP_Text coinsCountTMP;
+    TMPro.TMP_Text gameFinalTMP;
+    Button MenuBtn;
+    GameObject WonMenu;
 
-    int heightBorder = 9;
-    int widthBorder = 5;  // 16:9
+    Coins coins;
 
-    [SerializeField] int minSpikes = 10;
-    [SerializeField] int maxSpikes = 20;
-
-    [SerializeField] int minCoins = 2;
-    [SerializeField] int maxCoins = 8;
-
-    List<Vector3> matchedList;
-
-    public static int sceneCoins;
-
-    private void Awake()
+    void Awake()
     {
         Application.targetFrameRate = 30;
 
-        matchedList = new List<Vector3>();
-
-        Debug.Log(Camera.main.aspect);
-
-        if (Camera.main.aspect >= 0.44) // 20:9
-            widthBorder--;
-
-        Generating(minSpikes, maxSpikes, spikeObj);
-
-        sceneCoins = Generating(minCoins, maxCoins, coinObj);
-
-        Generating(1, 1, playerObj, false);
+        coins = new Coins(GetComponent<FieldGenerator>());
     }
-    int Generating(int min, int max, GameObject obj, bool copy = true)
+
+    void Start()
     {
-        int maxObj = widthBorder * heightBorder;
-        int num = Random.Range(min, max);
-        for (int i = 0; i < num && matchedList.Count < maxObj; i++)
-        {
-            Vector3 objVector3;
-            do
-                objVector3 = new Vector3(
-                   (float)Random.Range(-widthBorder, widthBorder),
-                   (float)Random.Range(-heightBorder, heightBorder),
-                   1f);
-            while (matchedList.Contains(objVector3));
+        WonMenu = FindObjectsOfType<GameObject>(true).FirstOrDefault(x => x.name == "WonMenu");
+        MenuBtn = FindObjectsOfType<Button>(true).FirstOrDefault(x => x.name == "MenuBtn");
+        gameFinalTMP = FindObjectsOfType<TMPro.TMP_Text>(true).FirstOrDefault(x => x.name == "InfoText");
 
-            matchedList.Add(objVector3);
-
-            if (copy)
-                Instantiate(obj, matchedList[matchedList.Count - 1], new Quaternion());
-            else obj.transform.position = objVector3;
-        }
-        return num;
+        coinsCountTMP = FindObjectsOfType<TMPro.TMP_Text>(true).FirstOrDefault(x => x.name == "CoinsCountTmp");
+        coinsCountTMP.text = $"0/{coins.GeneratedCoins}";
     }
+    public bool EndGamePref(string endGameText)
+    {
+        WonMenu.SetActive(true);
+        MenuBtn.gameObject.SetActive(false);
+        gameFinalTMP.text = endGameText;
+
+        return true;
+    }
+
+    public void PlaySound(AudioSource source, AudioClip[] soundList)
+    {
+        source.clip = soundList[UnityEngine.Random.Range(0, soundList.Length)];
+        source.pitch = UnityEngine.Random.Range(0.7f, 1.3f);
+        source.volume = UnityEngine.Random.Range(0.3f, 0.5f);
+        source.Play();
+    }
+
+    public bool AddedCoin()
+    {
+        coins.AddCoin();
+        coinsCountTMP.text = coins.GetCoinsCount().ToString() + "/" + coins.GeneratedCoins;
+
+        return coins.GetCoinsCount() == coins.GeneratedCoins;
+    }
+
     public class Coins
     {
-        int CoinsCount { get; set; }
-        public Coins()
+        int CoinsCount;
+        public int GeneratedCoins { get; }
+        public Coins(FieldGenerator generator)
         {
             CoinsCount = 0;
+            GeneratedCoins = generator.Initialize();
         }
         public void AddCoin()
         {
@@ -73,10 +69,6 @@ public class GameSceneManager : MonoBehaviour
         public int GetCoinsCount()
         {
             return CoinsCount;
-        }
-        public int GetSceneCoins()
-        {
-            return sceneCoins;
         }
     }
 }

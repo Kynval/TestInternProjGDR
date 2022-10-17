@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using static GameSceneManager;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] GameObject gameManagerObject;
+    GameSceneManager gameManager;
+
     public AudioSource playerSoundSource;
 
     [SerializeField] AudioClip[] blowSoundList;
     [SerializeField] AudioClip[] coinSoundList;
 
+    [SerializeField] GameObject point;
+
     Touch input;
 
-    [SerializeField] static Rigidbody2D cachedRigidbody2D;
-    [SerializeField] GameObject point;
-    [SerializeField] GameObject field;
+    Rigidbody2D cachedRigidbody2D;   
 
     LineRenderer cachedLineRenderer;
 
@@ -25,18 +26,11 @@ public class Player : MonoBehaviour
 
     Animator cachedAnimator;
 
-    Coins coins;
-
     List<Vector2> positionsList = new List<Vector2>();
 
-    bool restart;
+    bool restart; 
 
-    TMPro.TMP_Text coinsCountTMP;
-    TMPro.TMP_Text gameFinalTMP;
-    Button MenuBtn;
-    GameObject WonMenu;
-
-    private void Start()
+    void Start()
     {
         restart = false;
 
@@ -46,15 +40,8 @@ public class Player : MonoBehaviour
 
         cachedLineRenderer = GetComponent<LineRenderer>();
         cachedLineRenderer.positionCount = 1;
-      
-        WonMenu = FindObjectsOfType<GameObject>(true).FirstOrDefault(x => x.name == "WonMenu");
-        MenuBtn = FindObjectsOfType<Button>(true).FirstOrDefault(x => x.name == "MenuBtn");
-        gameFinalTMP = FindObjectsOfType<TMPro.TMP_Text>(true).FirstOrDefault(x => x.name == "InfoText");
 
-        coins = new Coins();
-
-        coinsCountTMP = FindObjectsOfType<TMPro.TMP_Text>(true).FirstOrDefault(x => x.name == "CoinsCountTmp");
-        coinsCountTMP.text = coins.GetCoinsCount().ToString() + "/" + coins.GetSceneCoins();
+        gameManager = gameManagerObject.GetComponentInChildren<GameSceneManager>();
     }  
 
     void Update()
@@ -67,7 +54,7 @@ public class Player : MonoBehaviour
             {
                 Ray ray = Camera.main.ScreenPointToRay(new Vector2(input.position.x, input.position.y));
 
-                if (!EventSystem.current.IsPointerOverGameObject() && !IsPointerOverUIObject())
+                if (!IsPointerOverUIObject())
                 {
                     Vector2 touchPosition = new Vector2(ray.origin.x, ray.origin.y);
 
@@ -91,6 +78,7 @@ public class Player : MonoBehaviour
         eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+
         return results.Count > 0;
     }
 
@@ -102,21 +90,21 @@ public class Player : MonoBehaviour
                 {
                     cachedRigidbody2D.velocity = Vector2.zero;
 
-                    UnityEngine.Object.Destroy(collider.gameObject);
+                    Destroy(collider.gameObject);
                     break;
                 }
             case "Spike":
                 {
-                    EndGamePref();
-                    gameFinalTMP.text = "You Lose..";
+                    gameManager.EndGamePref("You Lose..");
+                    ClearPosition();
 
-                    PlaySound(playerSoundSource, blowSoundList);
+                    gameManager.PlaySound(playerSoundSource, blowSoundList);
 
                     cachedAnimator.SetBool("GameOver", true);
                     cachedAnimator.Play("CircleBlow");
                     cachedParticleSystem.Play();
                   
-                    UnityEngine.Object.Destroy(this.gameObject, 0.7f);
+                    Destroy(this.gameObject, 0.7f);
                     break;
                 }
             case "Coin":
@@ -124,16 +112,14 @@ public class Player : MonoBehaviour
                     collider.GetComponent<CircleCollider2D>().radius = 0;
                     collider.GetComponent<Animator>().SetBool("CoinDrop", true);
 
-                    PlaySound(playerSoundSource, coinSoundList);
+                    gameManager.PlaySound(playerSoundSource, coinSoundList);
+                   
+                    Destroy(collider.gameObject, 1);
 
-                    coins.AddCoin();
-                    coinsCountTMP.text = coins.GetCoinsCount().ToString() + "/" + coins.GetSceneCoins();
-
-                    UnityEngine.Object.Destroy(collider.gameObject, 1);
-                    if (coins.GetSceneCoins() == coins.GetCoinsCount())
+                    if (gameManager.AddedCoin())
                     {
-                        EndGamePref();
-                        gameFinalTMP.text = "You Win!!";                                          
+                        ClearPosition();
+                        gameManager.EndGamePref("You Win!!");
                     }
                     break;
                 }
@@ -142,11 +128,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void EndGamePref()
+    private void ClearPosition()
     {
-        restart = true;
-        WonMenu.SetActive(true);
-        MenuBtn.gameObject.SetActive(false);
         positionsList.Clear();
         cachedRigidbody2D.velocity = Vector2.zero;
     }
@@ -173,13 +156,5 @@ public class Player : MonoBehaviour
         }
         cachedLineRenderer.positionCount = 1;
         targetPositions.Clear();
-    }
-
-    void PlaySound(AudioSource source, AudioClip[] soundList)
-    {
-        source.clip = soundList[UnityEngine.Random.Range(0, soundList.Length)];
-        source.pitch = UnityEngine.Random.Range(0.7f, 1.3f);
-        source.volume = UnityEngine.Random.Range(0.3f, 0.5f);
-        source.Play();
     }
 }

@@ -249,14 +249,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc6a7b7a339225458c4af9a7623c99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManagerObject: {fileID: 456827238810725525, guid: 90fb0d3eb9467b74593b44baf88e3323, type: 3}
   playerSoundSource: {fileID: 1802755178923457574}
   blowSoundList:
   - {fileID: 8300000, guid: fe2cd2bb7779e1840b92f56aba771edf, type: 3}
   - {fileID: 8300000, guid: 532e6b56804bfd34cbc27cdfb8aab1b7, type: 3}
   coinSoundList:
   - {fileID: 8300000, guid: 236020a04a4e7e747936ac45b3c7591d, type: 3}
+  cachedRigidbody2D: {fileID: 0}
   point: {fileID: 4071373549219600466, guid: 2d354013fc8f81440893a1876f5aac74, type: 3}
-  field: {fileID: 0}
 --- !u!58 &6540573347833172371
 CircleCollider2D:
   m_ObjectHideFlags: 0
